@@ -71,32 +71,36 @@ const setPlayerMoves = (player, m1t, m1v, m2t, m2v, m3t, m3v) => {
     }
 };
 
+const randomMove = () => {
+  let moveType = Math.ceil(Math.random() * 3);
+  let move;
+  if (moveType === 1) {
+    move = ROCK;
+  } else if (moveType === 2) {
+    move = PAPER;
+  } else if (moveType === 3) {
+    move = SCISSORS;
+  } else {
+    return;
+  }
+  return move;
+}
+
+const setComputerMoves = () => {
+  // Gets randomMove value and sets value to round move types
+  playerTwoMoveOneType = (randomMove());
+  playerTwoMoveTwoType = (randomMove());
+  playerTwoMoveThreeType = (randomMove());
+
+  // Calculates random move str values that sum to 99
+  playerTwoMoveOneValue = Math.ceil(Math.random() * 97);
+  playerTwoMoveTwoValue = Math.ceil(Math.random() * (98 - playerTwoMoveOneValue));
+  playerTwoMoveThreeValue = 99 - playerTwoMoveOneValue - playerTwoMoveTwoValue;
+}
+
+
 const getRoundWinner = (roundNumber) => {
-  if (p1t === ROCK && p2t === SCISSORS) {
-    return P1;
-  }
-  if (p1t === ROCK && p2t === PAPER) {
-    return P2;
-  }
-  if (p1t === PAPER && p2t === SCISSORS) {
-    return P2;
-  }
-  if (p1t === PAPER && p2t === ROCK) {
-    return P1;
-  }
-  if (p1t === SCISSORS && p2t === ROCK) {
-    return P2;
-  }
-  if (p1t === SCISSORS && p2t === PAPER) {
-    return P1;
-  }
-  if (p1t === p2t && p1v > p2v) {
-    return P1;
-  } else if (p1t === p2t && p1v < p2v) {
-    return P2;
-  } else if (p1t === p2t && p1v === p2v) {
-    return TIE;
-  }
+
 }
 
 
