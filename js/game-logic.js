@@ -1,4 +1,5 @@
 // All code should be written in this file.
+
 // Player one move types - ex: rock, paper, scissors
 let playerOneMoveOneType;
 let playerOneMoveTwoType;
@@ -71,6 +72,7 @@ const setPlayerMoves = (player, m1t, m1v, m2t, m2v, m3t, m3v) => {
     }
 };
 
+// Uses Math.random to generate number 1-3. based on number sets and returns move.
 const randomMove = () => {
   let moveType = Math.ceil(Math.random() * 3);
   let move;
@@ -86,6 +88,7 @@ const randomMove = () => {
   return move;
 }
 
+// Uses randomly generated values to select move type and move values
 const setComputerMoves = () => {
   // Gets randomMove value and sets value to round move types
   playerTwoMoveOneType = (randomMove());
@@ -98,14 +101,89 @@ const setComputerMoves = () => {
   playerTwoMoveThreeValue = 99 - playerTwoMoveOneValue - playerTwoMoveTwoValue;
 }
 
+// Variables for rounds and win conditions
+let roundNumber = 1;
+let maxRounds = 3;
+let playerOneScore = 0;
+let playerTwoScore = 0;
+
 
 const getRoundWinner = (roundNumber) => {
+  let p1t;
+  let p2t;
+  let p1v;
+  let p2v;
+
+  if (roundNumber === 1 || roundNumber === 2 || roundNumber === 3) {
+    p1t = playerOneMoveOneType;
+    p1v = playerOneMoveOneValue;
+    p2t = playerTwoMoveOneType;
+    p2v = playerTwoMoveOneValue;
+    if (p1t === ROCK && p2t === SCISSORS) {
+      updateScores();
+      return P1;
+    }
+    if (p1t === ROCK && p2t === PAPER) {
+      updateScores();
+      return P2;
+    }
+    if (p1t === PAPER && p2t === ROCK) {
+      updateScores();
+      return P1;
+    }
+    if (p1t === PAPER && p2t === SCISSORS) {
+      updateScores();
+      return P2;
+    }
+    if (p1t === SCISSORS && p2t === PAPER) {
+      updateScores();
+      return P1;
+    }
+    if (p1t === SCISSORS && p2t === ROCK) {
+      updateScores();
+      return P2;
+    }
+    if (p1t === p2t && p1v > p2v) {
+      updateScores();
+      return P1;
+    } else if (p1t === p2t && p1v < p2v) {
+      updateScores();
+      return P2;
+    } else if (p1t === p2t && p1v === p2v) {
+      updateScores();
+      return TIE;
+    }
+  }
+}
+
+const getGameWinner = (gameWinner) => {
 
 }
 
+const updateScores = (winner) => {
+  roundNumber += 1;
+  if (getRoundWinner() === P1) {
+    playerOneScore += 1;
+  } else if (getRoundWinner() === P2) {
+    playerTwoScore += 1;
+  } else {
+    // Round was a draw
+  }
 
+  if (roundNumber === maxRounds) {
+    if (playerOneScore > playerTwoScore) {
+      gameWinner = P1;
+      roundNumber = 0;
+      playerOnceScore = 0;
+      playerTwoScore = 0;
+    } else if (playerTwoScore > playerOneScore) {
+      gameWinner = P2;
+      roundNumber = 0;
+      playerOnceScore = 0;
+      playerTwoScore = 0;
+    } else {
+      // Error with scores.
+    }
+  }
 
-/* Computer Random 1-99 idea:
-m1v = Math.ceil(Math.Random() * 97);
-m2v = Math.ceil(Math.random() * (98 - m1v));
-m3v = 99 - m1v - m2v; */
+}
