@@ -109,47 +109,54 @@ let playerTwoScore = 0;
 
 
 const getRoundWinner = (roundNumber) => {
-  let p1t;
-  let p2t;
-  let p1v;
-  let p2v;
+  let p1t1 = playerOneMoveOneType;
+  let p1v1 = playerOneMoveOneValue;
+  let p2t1 = playerTwoMoveOneType;
+  let p2v1 = playerTwoMoveOneValue;
+  let p1t2 = playerOneMoveTwoType;
+  let p2t2 = playerTwoMoveTwoType;
+  let p1v2 = playerOneMoveTwoValue;
+  let p2v2 = playerTwoMoveTwoValue;
+  let p1t3 = playerOneMoveThreeType;
+  let p2t3 = playerTwoMoveThreeType;
+  let p1v3 = playerOneMoveThreeValue;
+  let p2v3 = playerTwoMoveThreeValue;
+
+  }
 
   if (roundNumber === 1 || roundNumber === 2 || roundNumber === 3) {
-    p1t = playerOneMoveOneType;
-    p1v = playerOneMoveOneValue;
-    p2t = playerTwoMoveOneType;
-    p2v = playerTwoMoveOneValue;
-    if (p1t === ROCK && p2t === SCISSORS) {
+    // Determins Winner of each round by selection type and str value
+    if (p1t1 === ROCK && p2t1 === SCISSORS || p1t2 === ROCK && p2t2 === SCISSORS || p1t3 === ROCK && p2t3 === SCISSORS) {
       updateScores();
       return P1;
     }
-    if (p1t === ROCK && p2t === PAPER) {
+    if (p1t1 === ROCK && p2t1 === PAPER || p1t2 === ROCK && p2t2 === PAPER || p1t3 === ROCK && p2t3 === PAPER) {
       updateScores();
       return P2;
     }
-    if (p1t === PAPER && p2t === ROCK) {
+    if (p1t1 === PAPER && p2t1 === ROCK || p1t2 === PAPER && p2t2 === ROCK || p1t3 === PAPER && p2t3 === ROCK) {
       updateScores();
       return P1;
     }
-    if (p1t === PAPER && p2t === SCISSORS) {
+    if (p1t1 === PAPER && p2t1 === SCISSORS || p1t2 === PAPER && p2t2 === SCISSORS || p1t3 === PAPER && p2t3 === SCISSORS) {
       updateScores();
       return P2;
     }
-    if (p1t === SCISSORS && p2t === PAPER) {
+    if (p1t1 === SCISSORS && p2t1 === PAPER || p1t2 === SCISSORS && p2t2 === PAPER || p1t3 === SCISSORS && p2t3 === PAPER) {
       updateScores();
       return P1;
     }
-    if (p1t === SCISSORS && p2t === ROCK) {
+    if (p1t1 === SCISSORS && p2t1 === ROCK || p1t2 === SCISSORS && p2t2 === ROCK || p1t3 === SCISSORS && p2t3 === ROCK) {
       updateScores();
       return P2;
     }
-    if (p1t === p2t && p1v > p2v) {
+    if (p1t1 === p2t1 && p1v1 > p2v1 || p1t2 === p2t2 && p1v2 > p2v2 || p1t3 === p2t3 && p1v3 > p2v3) {
       updateScores();
       return P1;
-    } else if (p1t === p2t && p1v < p2v) {
+    } else if (p1t1 === p2t1 && p1v1 < p2v1 || p1t2 === p2t2 && p1v2 < p2v2 || p1t3 === p2t3 && p1v3 < p2v3) {
       updateScores();
       return P2;
-    } else if (p1t === p2t && p1v === p2v) {
+    } else if (p1t1 === p2t1 && p1v1 === p2v1 || p1t2 === p2t2 && p1v2 === p2v2 || p1t3 === p2t3 && p1v3 === p2v3) {
       updateScores();
       return TIE;
     }
